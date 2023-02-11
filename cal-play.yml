@@ -8,6 +8,6 @@
   - name: ping all hosts
     ping:
       data:
-      
+
   roles:  
-    - JavaCalcRole
+    - calculator
