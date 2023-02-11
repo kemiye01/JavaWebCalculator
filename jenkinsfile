@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('init mvn') {
+            steps {
+                sh 'mvn initialized'
+            }
+        }
+          stage('build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+          stage('test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+          stage('deployment') {
+            steps {
+                ansiblePlaybook become: true, disableHostKeyChecking: true, installation: 'ansible', inventory: 'host.ini', playbook: 'cal-play.yml'
+            }
+        }       
+    }
+}
