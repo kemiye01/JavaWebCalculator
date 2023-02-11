@@ -1,0 +1,22 @@
+---
+  # - name: Configure Tomcat and Deploy application to target servers
+  #   hosts: all
+  #   become: true
+
+  # - tasks:  
+  - name: deploying the new WAR-file to all target servers
+    copy:
+      src: /var/lib/jenkins/workspace/CalculatorWebApp/target/webapp-0.2.war
+      dest: /opt/tomcat8/webapps
+      mode: 0755
+
+  - name: Starting up tomcat server on ubuntu servers
+    systemd:
+      name: tomcat
+      state: started
+      daemon_reload: true
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Starting up tomcat server on CentOS servers
+    command: sh /opt/tomcat8/bin/startup.sh
+    when: ansible_distribution == "CentOS"

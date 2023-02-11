@@ -7,4 +7,7 @@
 
   - name: ping all hosts
     ping:
-      data: 
+      data:
+      
+  roles:  
+    - JavaCalcRole

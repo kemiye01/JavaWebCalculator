@@ -1,2 +1,8 @@
 ---
-# tasks file for calculator
+# - import_tasks: cleanHosts.yml
+- import_tasks: install.yml
+- import_tasks: config.yml
+- import_tasks: deploy.yml
+
+...
+

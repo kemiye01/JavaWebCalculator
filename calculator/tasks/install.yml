@@ -1,0 +1,67 @@
+---
+  # - name: Install Apache Tomcat10 using ansible
+  #   hosts: all
+  #   become: true
+
+  #   tasks:
+  - name: Update the System Packages for Ubuntu
+    apt:
+      upgrade: yes
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Update Yum package for CentOS
+    yum:  
+      update_cache: true
+    when: ansible_distribution == "CentOS"
+
+  - name: Install JAVA in CENTOS
+    yum:
+      name: java-11-openjdk
+      state: latest
+    when: ansible_distribution == "CentOS"
+
+  - name: Install JAVA in UBUNTU 
+    apt:
+      name: default-jdk
+      state: present
+    when: ansible_distribution == "Ubuntu"
+  
+  - name: Create a Tomcat User
+    user:
+      name: tomcat
+
+  - name: Create a Tomcat Group
+    group:
+      name: tomcat
+
+  - name: Create a Tomcat Directory
+    file:
+      path: /opt/tomcat8
+      owner: tomcat
+      group: tomcat
+      state:  directory
+      mode: 755
+      recurse: yes
+
+  - name: download & unarchive tomcat8
+    unarchive:
+      # Tomcat 8
+      src: https://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.78/bin/apache-tomcat-8.5.78.tar.gz
+      #TomCat 10
+      # src: https://mirrors.estointernet.in/apache/tomcat/tomcat-10/v10.0.21/bin/apache-tomcat-10.0.21.tar.gz
+      dest: /opt/tomcat8
+      remote_src: yes
+      extra_opts: [--strip-components=1]
+
+  - name: Change ownership of tomcat directory
+    file:
+      path: /opt/tomcat8
+      owner: tomcat
+      group: tomcat
+      mode: "u+rwX,g+rX,o=rX"
+      # mode: 755
+      recurse: yes
+      state: directory
+
+...
