@@ -1,0 +1,10 @@
+---
+- name: project
+  hosts: H1
+  become: yes
+
+  tasks:
+
+  - name: ping all hosts
+    ping:
+      data: 
