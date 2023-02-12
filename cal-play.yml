@@ -1,6 +1,6 @@
 ---
 - name: project
-  hosts: H1
+  hosts: all
   become: yes
 
   tasks:
