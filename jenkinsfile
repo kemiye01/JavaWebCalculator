@@ -1,8 +1,7 @@
 pipeline {
     agent any
-
     stages {
-        stage('inititialize mvn') {
+        stage('initialize mvn') {
             steps {
                 sh 'mvn initialized'
             }
