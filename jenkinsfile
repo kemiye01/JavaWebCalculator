@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('initialize mvn') {
             steps {
-                sh 'mvn initialized'
+                sh 'mvn initialize'
             }
         }
           stage ('build') {
