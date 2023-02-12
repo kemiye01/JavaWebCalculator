@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: H1
   remote_user: root
   roles:
     - calculator
