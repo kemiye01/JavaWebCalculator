@@ -18,6 +18,7 @@ pipeline {
         }
           stage ('deployment') {
             steps {
+                sh 'chmod 0644 ./project.pem'
                 ansiblePlaybook become: true, disableHostKeyChecking: true, installation: 'ansible', inventory: 'host.ini', playbook: 'cal-play.yml'
             }
         }       
