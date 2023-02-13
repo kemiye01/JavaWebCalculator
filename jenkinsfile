@@ -18,8 +18,6 @@ pipeline {
         }
           stage ('deployment') {
             steps {
-                sh "sudo chmod 775 /home/ubuntu"
-                sh "ls -la /home/ubuntu"
                 ansiblePlaybook become: true, disableHostKeyChecking: true, installation: 'ansible', inventory: 'host.ini', playbook: 'cal-play.yml'
             }
         }       
