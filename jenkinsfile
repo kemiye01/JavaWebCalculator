@@ -18,7 +18,8 @@ pipeline {
         }
           stage ('deployment') {
             steps {
-                sh "ls ~"
+                sh "ls /home"
+                sh "ls /home/ubuntu"
                 ansiblePlaybook become: true, disableHostKeyChecking: true, installation: 'ansible', inventory: 'host.ini', playbook: 'cal-play.yml'
             }
         }       
