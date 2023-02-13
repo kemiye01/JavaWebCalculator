@@ -18,6 +18,7 @@ pipeline {
         }
           stage ('deployment') {
             steps {
+                ansible_ssh_private_key_file=./project.pem ansible_ssh_common_args='-o StrictHostKeyChecking=no'
                 ansiblePlaybook become: true, disableHostKeyChecking: true, installation: 'ansible', inventory: 'host.ini', playbook: 'cal-play.yml'
             }
         }       
