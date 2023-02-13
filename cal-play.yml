@@ -1,6 +1,6 @@
 ---
 - name: project
-  hosts: all
+  hosts: proj-master
   become: yes
 
   tasks:
